@@ -1,8 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "weatherBack.pdf",
+      "filename" : "Img.png",
       "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Img 1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Img 2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

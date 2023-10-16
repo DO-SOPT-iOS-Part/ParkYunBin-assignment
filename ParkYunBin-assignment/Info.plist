@@ -4,6 +4,8 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>FontsFree-Net-SFProDisplay-Thin.ttf</string>
+		<string>FontsFree-Net-SFProDisplay-Light.ttf</string>
 		<string>SFPRODISPLAYREGULAR.OTF</string>
 		<string>SFPRODISPLAYMEDIUM.OTF</string>
 		<string>SFPRODISPLAYBOLD.OTF</string>

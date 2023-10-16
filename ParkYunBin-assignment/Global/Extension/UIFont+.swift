@@ -20,4 +20,12 @@ extension UIFont {
     class func bold(size: CGFloat) -> UIFont {
         return UIFont(name: AppFontName.boldFont.rawValue, size: size)!
     }
+    
+    class func light(size: CGFloat) -> UIFont {
+        return UIFont(name: AppFontName.lightFont.rawValue, size: size)!
+    }
+    
+    class func thin(size: CGFloat) -> UIFont {
+        return UIFont(name: AppFontName.thinFont.rawValue, size: size)!
+    }
 }

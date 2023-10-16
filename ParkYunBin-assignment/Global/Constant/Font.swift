@@ -12,6 +12,8 @@ enum AppFontName: String {
     case regularFont = "SFProDisplay-Regular"
     case mediumFont = "SFProDisplay-Medium"
     case boldFont = "SFProDisplay-Bold"
+    case thinFont = "SFProDisplay-Thin"
+    case lightFont = "SFProDisplay-Light"
     
     var name: String {
         return self.rawValue
