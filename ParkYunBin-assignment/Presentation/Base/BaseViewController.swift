@@ -35,19 +35,23 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        hieararchy()
         setLayout()
         setButtonEvent()
-        view.backgroundColor = .systemBackground
     }
     
     //MARK: - Functions
     
     func configureUI() {
         //override Point
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .black
 
     }
     
+    func hieararchy() {
+        //override Point
+    }
+
     func setLayout() {
         //override Point
     }

@@ -12,6 +12,7 @@ class BaseView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        hieararchy()
         setLayout()
     }
     
@@ -23,6 +24,10 @@ class BaseView: UIView {
     func configureUI() {
         // override Point
         
+    }
+    
+    func hieararchy() {
+        //override Point
     }
     
     func setLayout() {

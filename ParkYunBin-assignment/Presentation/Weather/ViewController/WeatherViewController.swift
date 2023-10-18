@@ -8,12 +8,30 @@
 import UIKit
 
 class WeatherViewController: BaseViewController {
+    
+    // MARK: - UI Components
+    
+    private var weatherView = WeatherView()
 
+    // MARK: - Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
+    
+    // MARK: - Override Functions
+    
+    override func hieararchy() {
+        view.addSubview(weatherView)
+    }
 
-
+    override func setLayout() {
+        weatherView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    // MARK: - Custom Functions
 }
 
