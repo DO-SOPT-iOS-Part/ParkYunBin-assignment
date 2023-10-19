@@ -25,9 +25,9 @@ final class WeatherView: BaseView {
     private var drawerButton = UIButton()
     private let weatherTitleLabel = UILabel()
     private var searchBar = UISearchBar()
-    private var weatherListView = WeatherBlockView(position: "의정부시", weather: "흐림", currentTemp: 21, highestTemp: 27, lowestTemp: 12)
     private var scrollView = UIScrollView()
     private var contentView = UIView()
+    private var listStackView = UIStackView()
 
     // MARK: - Override Functions
 
@@ -50,20 +50,22 @@ final class WeatherView: BaseView {
             $0.searchTextField.attributedPlaceholder = attributedString
         }
         
-//        weatherListView.do {
-//            $0.setListInfo(position: "의정부시",
-//                           weather: "흐림",
-//                           currentTemp: 21,
-//                           highestTemp: 27,
-//                           lowestTemp: 12)
-//        }
+        listStackView.do {
+            $0.axis = .vertical
+            $0.spacing = 16
+            $0.alignment = .center
+        }
     }
     
     override func hieararchy() {
         self.addSubViews(drawerButton,
                          weatherTitleLabel,
                          searchBar,
-                         weatherListView)
+                         scrollView
+        )
+        
+        scrollView.addSubview(contentView)
+        contentView.addSubview(listStackView)
     }
     
     override func setLayout() {
@@ -84,10 +86,26 @@ final class WeatherView: BaseView {
             $0.leading.trailing.equalToSuperview().inset(15)
         }
         
-        weatherListView.snp.makeConstraints {
+        scrollView.snp.makeConstraints {
             $0.top.equalTo(searchBar.snp.bottom).offset(24)
-            $0.height.equalTo(117)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView.contentLayoutGuide)
+            $0.height.greaterThanOrEqualTo(listStackView.snp.height).priority(.low)
+        }
+        
+        listStackView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(contentView)
+            $0.top.bottom.equalTo(contentView)
+            $0.centerX.equalTo(scrollView)
+        }
+        
+        // 더미데이터에서 인덱스 및 데이터 가져와서, StackView에 넣어주기
+        HomeWeather.dummyWeather().forEach {
+            let list = WeatherBlockView(homeWeahter: $0)
+            listStackView.addArrangedSubview(list)
         }
     }
 }

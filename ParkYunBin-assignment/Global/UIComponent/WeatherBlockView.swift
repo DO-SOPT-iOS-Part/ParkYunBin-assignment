@@ -15,6 +15,7 @@ class WeatherBlockView: UIView {
     // MARK: - Properties
     
     private let height: CGFloat = 117.0
+    private let width: CGFloat = Size.width - 40
     private let position = String()
     private let weather = String()
     private let currentTemp = Int()
@@ -38,13 +39,13 @@ class WeatherBlockView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(position: String, weather: String, currentTemp: Int, highestTemp: Int, lowestTemp: Int) {
+    init(homeWeahter: HomeWeather) {
         super.init(frame: CGRect())
         
-        myPositionLabel.text = position
-        weatherStateLabel.text = weather
-        tempStateLabel.text = "\(currentTemp)°"
-        highLowTempLabel.text = "최고:\(highestTemp)° 최저:\(lowestTemp)°"
+        myPositionLabel.text = homeWeahter.position
+        weatherStateLabel.text = homeWeahter.weather
+        tempStateLabel.text = "\(homeWeahter.currentTemp)°"
+        highLowTempLabel.text = "최고:\(homeWeahter.highestTemp)° 최저:\(homeWeahter.lowestTemp)°"
         
         configureUI()
         hieararchy()
@@ -106,6 +107,7 @@ class WeatherBlockView: UIView {
         
         self.snp.makeConstraints {
             $0.height.equalTo(height)
+            $0.width.equalTo(width)
         }
         
         backgroundImage.snp.makeConstraints {
