@@ -12,13 +12,6 @@ class WeatherViewController: BaseViewController {
     // MARK: - UI Components
     
     private var weatherView = WeatherView()
-
-    // MARK: - Life Cycles
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
     
     // MARK: - Override Functions
     
