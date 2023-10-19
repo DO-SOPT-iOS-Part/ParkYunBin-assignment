@@ -15,31 +15,11 @@ class WeatherBlockView: UIView {
     // MARK: - Properties
     
     private let height: CGFloat = 117.0
-    var position: String? {
-        didSet {
-            myPositionLabel.text = position
-        }
-    }
-    var weather: String? {
-        didSet {
-            weatherStateLabel.text = weather
-        }
-    }
-    var currentTemp: Int? {
-        didSet {
-            tempStateLabel.text = "\(currentTemp ?? 0)°"
-        }
-    }
-    var highestTemp: Int? {
-        didSet {
-            highLowTempLabel.text = "최고:\(highestTemp ?? 0)° 최저:\(lowestTemp ?? 0)°"
-        }
-    }
-    var lowestTemp: Int? {
-        didSet {
-            highLowTempLabel.text = "최고:\(highestTemp ?? 0)° 최저:\(lowestTemp ?? 0)°"
-        }
-    }
+    private let position = String()
+    private let weather = String()
+    private let currentTemp = Int()
+    private let highestTemp = Int()
+    private let lowestTemp = Int()
     
     // MARK: - UI Components
     
@@ -53,15 +33,23 @@ class WeatherBlockView: UIView {
     
     // MARK: - init
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(position: String, weather: String, currentTemp: Int, highestTemp: Int, lowestTemp: Int) {
+        super.init(frame: CGRect())
+        
+        myPositionLabel.text = position
+        weatherStateLabel.text = weather
+        tempStateLabel.text = "\(currentTemp)°"
+        highLowTempLabel.text = "최고:\(highestTemp)° 최저:\(lowestTemp)°"
+        
         configureUI()
         hieararchy()
         setLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        
     }
     
     // MARK: - Functions
@@ -143,13 +131,5 @@ class WeatherBlockView: UIView {
             $0.centerY.equalTo(weatherStateLabel)
             $0.trailing.equalToSuperview().inset(16)
         }
-    }
-    
-    func setListInfo(position: String, weather: String, currentTemp: Int, highestTemp: Int, lowestTemp: Int) {
-        self.position = position
-        self.weather = weather
-        self.currentTemp = currentTemp
-        self.highestTemp = highestTemp
-        self.lowestTemp = lowestTemp
     }
 }

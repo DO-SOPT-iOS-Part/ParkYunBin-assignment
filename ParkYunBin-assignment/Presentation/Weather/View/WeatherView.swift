@@ -25,7 +25,7 @@ final class WeatherView: BaseView {
     private var drawerButton = UIButton()
     private let weatherTitleLabel = UILabel()
     private var searchBar = UISearchBar()
-    private var weatherListView = WeatherBlockView()
+    private var weatherListView = WeatherBlockView(position: "의정부시", weather: "흐림", currentTemp: 21, highestTemp: 27, lowestTemp: 12)
     private var scrollView = UIScrollView()
     private var contentView = UIView()
 
@@ -50,13 +50,13 @@ final class WeatherView: BaseView {
             $0.searchTextField.attributedPlaceholder = attributedString
         }
         
-        weatherListView.do {
-            $0.setListInfo(position: "의정부시",
-                           weather: "흐림",
-                           currentTemp: 21,
-                           highestTemp: 27,
-                           lowestTemp: 12)
-        }
+//        weatherListView.do {
+//            $0.setListInfo(position: "의정부시",
+//                           weather: "흐림",
+//                           currentTemp: 21,
+//                           highestTemp: 27,
+//                           lowestTemp: 12)
+//        }
     }
     
     override func hieararchy() {
@@ -86,6 +86,7 @@ final class WeatherView: BaseView {
         
         weatherListView.snp.makeConstraints {
             $0.top.equalTo(searchBar.snp.bottom).offset(24)
+            $0.height.equalTo(117)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
     }
