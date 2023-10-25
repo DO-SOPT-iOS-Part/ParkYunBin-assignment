@@ -18,22 +18,22 @@ final class DetailWeatherView: BaseView {
     
     private let backgroundImageView = UIImageView()
     private let detailTopView = DetailTopView(homeWeahter: HomeWeather.dummyWeather()[0])
-    private let cardView = UIView()
-    private let weatherCommentLabel = UILabel()
-    private let horizontalScrollView = UIScrollView()
-    private let contentView = UIView()
-    private let seperateLineView = LineView()
-    private let bottomLineView = LineView()
+    private let bottomLineView = UIView()
+    private let cardView = DetailCardView(detailWeather: DetailWeather.totolData()[0])
 
     // MARK: - Override Functions
 
     override func configureUI() {
-        self.addSubViews(backgroundImageView, detailTopView)
+        self.addSubViews(backgroundImageView, detailTopView, cardView)
     }
     
     override func hieararchy() {
         backgroundImageView.do {
             $0.image = Image.detailBackground
+        }
+        
+        bottomLineView.do {
+            $0.backgroundColor = UIColor(white: 1, alpha: 0.5)
         }
     }
     
@@ -44,9 +44,13 @@ final class DetailWeatherView: BaseView {
         }
         
         detailTopView.snp.makeConstraints {
-            
             $0.top.equalTo(safeAreaLayoutGuide).inset(34)
             $0.centerX.equalToSuperview()
+        }
+        
+        cardView.snp.makeConstraints {
+            $0.top.equalTo(detailTopView.snp.bottom).offset(44)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
     }
 }
