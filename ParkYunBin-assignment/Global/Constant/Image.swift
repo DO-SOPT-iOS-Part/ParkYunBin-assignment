@@ -12,7 +12,7 @@ public enum Image {
     // MARK: - Icons
     
     static let cloudyNight = UIImage(named: "cloudyNight")!
-    static let ellipse = UIImage(named: "ellipse")!
+    static let ellipse = UIImage(named: "Ellipse")!
     static let finder = UIImage(named: "finder")!
     static let list = UIImage(named: "list")!
     static let littleRain = UIImage(named: "littleRain")!
