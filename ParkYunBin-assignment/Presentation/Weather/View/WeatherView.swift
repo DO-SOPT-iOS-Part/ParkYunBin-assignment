@@ -22,12 +22,12 @@ final class WeatherView: BaseView {
 
     // MARK: - UI Components
     
-    private var drawerButton = UIButton()
+    private lazy var drawerButton = UIButton()
     private let weatherTitleLabel = UILabel()
-    private var searchBar = UISearchBar()
+    var searchBar = UISearchBar()
     private var scrollView = UIScrollView()
     private var contentView = UIView()
-    private var listStackView = UIStackView()
+    var listStackView = UIStackView()
 
     // MARK: - Override Functions
 
@@ -45,6 +45,7 @@ final class WeatherView: BaseView {
         searchBar.do {
             $0.showsCancelButton = false
             $0.backgroundImage = UIImage()
+            $0.searchTextField.textColor = .white
             $0.searchTextField.backgroundColor = UIColor(white: 1, alpha: 0.1)
             $0.searchTextField.leftView?.tintColor = UIColor(white: 1, alpha: 0.5)
             $0.searchTextField.attributedPlaceholder = attributedString
