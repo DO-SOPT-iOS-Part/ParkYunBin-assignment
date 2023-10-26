@@ -14,6 +14,9 @@ class WeatherBlockView: UIView {
     
     // MARK: - Properties
     
+    var handler: (() -> (Void))?
+    var id: Int = Int()
+    var weatherData: HomeWeather?
     private let height: CGFloat = 117.0
     private let width: CGFloat = Size.width - 40
     private let position = String()
@@ -42,15 +45,17 @@ class WeatherBlockView: UIView {
     init(homeWeahter: HomeWeather) {
         super.init(frame: CGRect())
         
+        weatherData = homeWeahter
         myPositionLabel.text = homeWeahter.position
         weatherStateLabel.text = homeWeahter.weather
         tempStateLabel.text = "\(homeWeahter.currentTemp)°"
         highLowTempLabel.text = "최고:\(homeWeahter.highestTemp)° 최저:\(homeWeahter.lowestTemp)°"
+        id = homeWeahter.id
         
         configureUI()
         hieararchy()
         setLayout()
-        
+        addGesture()
     }
     
     // MARK: - Functions
@@ -133,5 +138,16 @@ class WeatherBlockView: UIView {
             $0.centerY.equalTo(weatherStateLabel)
             $0.trailing.equalToSuperview().inset(16)
         }
+    }
+    
+    private func addGesture() {
+        lazy var moveToDetailViewGesture = UITapGestureRecognizer.init(target: self, action: #selector(moveToDetailViewGestureHandler))
+        self.addGestureRecognizer(moveToDetailViewGesture)
+
+    }
+    
+    @objc
+    func moveToDetailViewGestureHandler() {
+        handler?()
     }
 }

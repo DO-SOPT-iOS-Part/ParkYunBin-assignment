@@ -16,16 +16,17 @@ final class DetailWeatherView: BaseView {
 
     // MARK: - UI Components
     
+    var detailTopView = DetailTopView()
+    var cardView = DetailCardView()
+    var drawerButton = UIButton()
+    private var id: Int = Int()
     private let backgroundImageView = UIImageView()
-    private let detailTopView = DetailTopView(homeWeahter: HomeWeather.dummyWeather()[0])
     private let bottomLineView = UIView()
-    private let cardView = DetailCardView(detailWeather: DetailWeather.totolData()[0])
     private var mapButton = UIButton()
-    private var drawerButton = UIButton()
     private var locationIcon = UIImageView()
     private var dotIcon = UIImageView()
     private var pageStackView = UIStackView()
-
+    
     // MARK: - Override Functions
 
     override func configureUI() {

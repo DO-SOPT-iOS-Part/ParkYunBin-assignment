@@ -16,33 +16,12 @@ final class DetailTopView: BaseView {
 
     // MARK: - UI Components
     
-    private let myPositionLabel = UILabel()
-    private let currentTemp = UILabel()
-    private let currentWeather = UILabel()
-    private let highLowTempLabel = UILabel()
-    private let stackView = UIStackView()
+    var myPositionLabel = UILabel()
+    var currentTemp = UILabel()
+    var currentWeather = UILabel()
+    var highLowTempLabel = UILabel()
+    var stackView = UIStackView()
     
-    // MARK: - init
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    init(homeWeahter: HomeWeather) {
-        super.init(frame: CGRect())
-        
-        myPositionLabel.text = homeWeahter.position
-        currentWeather.text = homeWeahter.weather
-        currentTemp.text = "\(homeWeahter.currentTemp)°"
-        highLowTempLabel.text = "최고:\(homeWeahter.highestTemp)° 최저:\(homeWeahter.lowestTemp)°"
-        
-        configureUI()
-        hieararchy()
-        setLayout()
-        
-    }
-
     // MARK: - Override Functions
     
     override func configureUI() {
@@ -85,6 +64,13 @@ final class DetailTopView: BaseView {
         stackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    func dataBind(homeWeather: HomeWeather) {
+        myPositionLabel.text = homeWeather.position
+        currentWeather.text = homeWeather.weather
+        currentTemp.text = "\(homeWeather.currentTemp)°"
+        highLowTempLabel.text = "최고:\(homeWeather.highestTemp)° 최저:\(homeWeather.lowestTemp)°"
     }
 }
 

@@ -16,35 +16,11 @@ final class DetailCardView: BaseView {
     
     // MARK: - UI Components
     
-    private let weatherCommentLabel = UILabel()
-    private let horizontalScrollView = UIScrollView()
-    private let contentView = UIView()
-    private let seperateLineView = UIView()
-    private let listStackView = UIStackView()
-    
-    // MARK: - init
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    init(detailWeather: [DetailWeather]) {
-        super.init(frame: CGRect())
-        
-        detailWeather.forEach {
-            let cell = DetailWeatherCell(detailWeather: $0)
-            cell.snp.makeConstraints {
-                $0.width.equalTo(44)
-            }
-            listStackView.addArrangedSubview(cell)
-        }
-        
-        configureUI()
-        hieararchy()
-        setLayout()
-        
-    }
+    private var weatherCommentLabel = UILabel()
+    private var horizontalScrollView = UIScrollView()
+    private var contentView = UIView()
+    private var seperateLineView = UIView()
+    var listStackView = UIStackView()
 
     // MARK: - Override Functions
     
@@ -125,6 +101,17 @@ final class DetailCardView: BaseView {
         listStackView.snp.makeConstraints {
             $0.leading.trailing.equalTo(contentView)
             $0.top.equalTo(contentView)
+        }
+    }
+    
+    func dataBind(detailWeather: [WeatherTimeLine]) {
+        detailWeather.forEach {
+            let cell = DetailWeatherCell()
+            cell.cellDataBind(timeLine: $0)
+            cell.snp.makeConstraints {
+                $0.width.equalTo(44)
+            }
+            listStackView.addArrangedSubview(cell)
         }
     }
 }

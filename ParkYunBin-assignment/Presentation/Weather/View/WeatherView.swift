@@ -22,7 +22,7 @@ final class WeatherView: BaseView {
 
     // MARK: - UI Components
     
-    private lazy var drawerButton = UIButton()
+    private var drawerButton = UIButton()
     private let weatherTitleLabel = UILabel()
     var searchBar = UISearchBar()
     private var scrollView = UIScrollView()
@@ -103,10 +103,10 @@ final class WeatherView: BaseView {
             $0.centerX.equalTo(scrollView)
         }
         
-        // 더미데이터에서 인덱스 및 데이터 가져와서, StackView에 넣어주기
-        HomeWeather.dummyWeather().forEach {
-            let list = WeatherBlockView(homeWeahter: $0)
-            listStackView.addArrangedSubview(list)
-        }
+//        // 더미데이터에서 인덱스 및 데이터 가져와서, StackView에 넣어주기
+//        HomeWeather.dummyWeather().forEach {
+//            let list = WeatherBlockView(homeWeahter: $0)
+//            listStackView.addArrangedSubview(list)
+//        }
     }
 }

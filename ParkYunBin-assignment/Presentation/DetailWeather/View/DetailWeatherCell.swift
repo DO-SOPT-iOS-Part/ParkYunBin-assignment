@@ -20,25 +20,6 @@ final class DetailWeatherCell: BaseView {
     private var weatherImageView = UIImageView()
     private var tempLabel = UILabel()
     private var cellStackView = UIStackView()
-    
-    // MARK: - init
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    init(detailWeather: DetailWeather) {
-        super.init(frame: CGRect())
-        
-        timeLabel.text = "\(detailWeather.timeLine)"
-        tempLabel.text = "\(detailWeather.timeTemp)"
-        weatherImageView.image = detailWeather.timeWeather.icon
-        
-        configureUI()
-        hieararchy()
-        setLayout()
-        
-    }
 
     // MARK: - Override Functions
 
@@ -70,6 +51,12 @@ final class DetailWeatherCell: BaseView {
         cellStackView.snp.makeConstraints {
             $0.width.equalTo(44)
         }
+    }
+    
+    func cellDataBind(timeLine: WeatherTimeLine) {
+        timeLabel.text = timeLine.timeLine
+        weatherImageView.image = timeLine.timeWeather.icon
+        tempLabel.text = timeLine.timeTemp
     }
 }
 

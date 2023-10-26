@@ -11,6 +11,7 @@ class WeatherViewController: BaseViewController {
     
     // MARK: - Properties
     
+    // 검색 결과를 넣어줄 배열
     private var filter = [HomeWeather]()
     
     // MARK: - UI Components
@@ -22,7 +23,7 @@ class WeatherViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate()
-        
+        setListData()
     }
     
     // MARK: - Override Functions
@@ -44,7 +45,7 @@ class WeatherViewController: BaseViewController {
     }
     
     // 매개변수로 들어온 단어를 기준으로 StackView에 필터링한 결과들 넣어주는 함수
-    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+    private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         weatherView.listStackView.removeAllArrangedSubviews()
         
         filter =  HomeWeather.dummyWeather().filter({(location: HomeWeather) -> Bool in
@@ -54,15 +55,39 @@ class WeatherViewController: BaseViewController {
         filter.forEach {
             let list = WeatherBlockView(homeWeahter: $0)
             weatherView.listStackView.addArrangedSubview(list)
+            setClosure(list: list)
+
         }
     }
     
     // 전체 데이터 리스트 불러오기
-    func showTotalList() {
+    private func showTotalList() {
         weatherView.listStackView.removeAllArrangedSubviews()
         HomeWeather.dummyWeather().forEach {
             let list = WeatherBlockView(homeWeahter: $0)
             weatherView.listStackView.addArrangedSubview(list)
+            setClosure(list: list)
+        }
+    }
+    
+    //초기 리스트 탭 이벤트 설정
+    private func setListData() {
+        HomeWeather.dummyWeather().forEach {
+            let list = WeatherBlockView(homeWeahter: $0)
+            weatherView.listStackView.addArrangedSubview(list)
+            setClosure(list: list)
+        }
+    }
+    
+    //클로저로 데이터 전달하는 코드 함수로 만들어줬음!
+    private func setClosure(list: WeatherBlockView) {
+        list.handler = {[weak self] in
+            guard let self else { return }
+            let detailViewController = DetailWeatherViewController()
+            print(list.weatherData)
+            detailViewController.detailDataBind(homeWeather: list.weatherData ?? HomeWeather.dummyWeather()[0],
+                                                id: list.id)
+            navigationController?.pushViewController(detailViewController, animated: true)
         }
     }
 }
