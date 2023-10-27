@@ -12,7 +12,7 @@ class DetailWeatherViewController: BaseViewController {
     // MARK: - UI Components
     
     private var detailWeatherView = DetailWeatherView()
-    private var id: Int = 0
+    var id: Int = 0
     
     // MARK: - Override Functions
     

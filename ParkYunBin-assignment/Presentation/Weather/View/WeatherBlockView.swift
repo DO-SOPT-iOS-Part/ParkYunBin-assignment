@@ -27,7 +27,7 @@ class WeatherBlockView: UIView {
     
     // MARK: - UI Components
     
-    private var backgroundImage = UIImageView()
+    private let backgroundImage = UIImageView()
     private let positionTitleLabel = UILabel()
     private var myPositionLabel = UILabel()
     private var weatherStateLabel = UILabel()

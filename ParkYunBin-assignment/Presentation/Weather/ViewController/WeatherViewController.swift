@@ -83,11 +83,13 @@ class WeatherViewController: BaseViewController {
     private func setClosure(list: WeatherBlockView) {
         list.handler = {[weak self] in
             guard let self else { return }
-            let detailViewController = DetailWeatherViewController()
-            print(list.weatherData)
-            detailViewController.detailDataBind(homeWeather: list.weatherData ?? HomeWeather.dummyWeather()[0],
-                                                id: list.id)
-            navigationController?.pushViewController(detailViewController, animated: true)
+//            let detailViewController = DetailWeatherViewController()
+            let detailPageViewController = PageDetailViewController()
+            detailPageViewController.dataBind(id: list.id)
+//            detailViewController.detailDataBind(homeWeather: list.weatherData ?? HomeWeather.dummyWeather()[0],
+//                                                id: list.id)
+            
+            navigationController?.pushViewController(detailPageViewController, animated: true)
         }
     }
 }
