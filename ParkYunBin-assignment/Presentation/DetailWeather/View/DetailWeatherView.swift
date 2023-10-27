@@ -19,6 +19,8 @@ final class DetailWeatherView: BaseView {
     var detailTopView = DetailTopView()
     var cardView = DetailCardView()
     var drawerButton = UIButton()
+    private var totalScrollView = UIScrollView()
+    private var contentView = UIView()
     private var id: Int = Int()
     private let backgroundImageView = UIImageView()
     private let bottomLineView = UIView()
@@ -60,17 +62,24 @@ final class DetailWeatherView: BaseView {
             $0.spacing = 4
             $0.alignment = .center
         }
+        
+        totalScrollView.do {
+            $0.alwaysBounceVertical = true
+        }
     }
     
     override func hieararchy() {
         self.addSubViews(backgroundImageView,
-                         detailTopView,
-                         cardView,
-                         bottomLineView,
-                         mapButton,
-                         drawerButton,
-                         pageStackView
+                         totalScrollView
         )
+        
+        totalScrollView.addSubViews(contentView)
+        contentView.addSubViews(detailTopView,
+                                cardView,
+                                bottomLineView,
+                                mapButton,
+                                drawerButton,
+                                pageStackView)
     }
     
     override func setLayout() {
@@ -79,8 +88,18 @@ final class DetailWeatherView: BaseView {
             $0.edges.equalToSuperview()
         }
         
+        totalScrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.width.equalTo(Size.width)
+            $0.height.equalToSuperview()
+        }
+        
         detailTopView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).inset(34)
+            $0.top.equalToSuperview().inset(34)
             $0.centerX.equalToSuperview()
         }
         

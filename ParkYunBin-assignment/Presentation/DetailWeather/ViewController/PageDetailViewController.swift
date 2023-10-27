@@ -24,9 +24,7 @@ class PageDetailViewController: BaseViewController {
         
         setViewControllerList()
         setupDelegate()
-        
-        
-        
+    
         pageViewController.setViewControllers([dataViewControllers[id]],
                                               direction: .forward,
                                               animated: true,
