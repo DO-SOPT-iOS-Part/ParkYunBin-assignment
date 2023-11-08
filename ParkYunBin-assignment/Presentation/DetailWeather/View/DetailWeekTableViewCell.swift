@@ -49,7 +49,7 @@ class DetailWeekTableViewCell: UITableViewCell {
     private func configureUI() {
         
         seperateBar.do {
-            $0.backgroundColor = .white
+            $0.backgroundColor = .darkGray
         }
         
         dailyLabel.do {
@@ -62,20 +62,20 @@ class DetailWeekTableViewCell: UITableViewCell {
             $0.image = WeatherIcon.cloudyNight.icon
         }
         
-        highestTempLabel.do {
+        lowestTempLabel.do {
             $0.text = "15°"
             $0.font = .medium(size: 22)
             $0.textColor = .systemGray
         }
             
-        lowestTempLabel.do {
+        highestTempLabel.do {
             $0.text = "21°"
             $0.font = .medium(size: 22)
             $0.textColor = .white
         }
         
         tempStackView.do {
-            $0.spacing = 10
+            $0.spacing = 13
             $0.axis = .horizontal
             $0.alignment = .center
         }
@@ -83,13 +83,14 @@ class DetailWeekTableViewCell: UITableViewCell {
     
     private func hierarchy() {
         contentView.addSubViews(seperateBar, dailyLabel, weatherIcon, tempStackView)
-        tempStackView.addArrangeSubViews(highestTempLabel, lowestTempLabel)
+        tempStackView.addArrangeSubViews(lowestTempLabel, highestTempLabel)
     }
     
     private func setLayout() {
         seperateBar.snp.makeConstraints {
             $0.height.equalTo(0.2)
             $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(15)
         }
         
         dailyLabel.snp.makeConstraints {
@@ -125,6 +126,11 @@ class DetailWeekTableViewCell: UITableViewCell {
             if let tempProgressView = tempProgressView {
                 tempStackView.insertArrangedSubview(tempProgressView, at: 1)
                 tempProgressViewAdded = true
+            }
+            
+            tempProgressView?.snp.makeConstraints {
+                $0.width.equalTo(100)
+                $0.height.equalTo(4)
             }
         }
     }

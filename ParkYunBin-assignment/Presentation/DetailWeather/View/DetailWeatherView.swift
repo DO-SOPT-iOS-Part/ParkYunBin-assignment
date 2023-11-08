@@ -37,6 +37,8 @@ final class DetailWeatherView: BaseView {
             $0.backgroundColor = UIColor(white: 1, alpha: 0.03)
             $0.isScrollEnabled = false
             $0.layer.cornerRadius = 15
+            $0.layer.borderWidth = 0.5
+            $0.layer.borderColor = UIColor(white: 1, alpha: 0.25).cgColor
         }
         
         totalScrollView.do {
@@ -54,6 +56,8 @@ final class DetailWeatherView: BaseView {
         contentView.addSubViews(detailTopView,
                                 cardView,
                                 dailyWeekWeatherTableView)
+        
+        dailyWeekWeatherTableView.tableHeaderView = DetailDailyTableHeaderView()
     }
     
     override func setLayout() {
@@ -94,6 +98,10 @@ final class DetailWeatherView: BaseView {
             $0.bottom.equalTo(safeAreaLayoutGuide)
             $0.height.equalTo(62)
         }
+        
+        dailyWeekWeatherTableView.tableHeaderView?.frame = .init(origin: .zero,
+                                                                 size: .init(width: UIScreen.main.bounds.width,
+                                                                             height: 38))
     }
 }
 
