@@ -18,7 +18,7 @@ class DetailTempBarView: BaseView {
     {
         didSet {
             progressInnerView.snp.updateConstraints{
-                $0.leading.equalTo(self).inset(width * Double((lowestTemp - totalLowestTemp)))
+                $0.leading.equalToSuperview().inset(width * Double((lowestTemp - totalLowestTemp)))
             }
         }
     }

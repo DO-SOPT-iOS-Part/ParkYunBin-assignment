@@ -19,7 +19,7 @@ final class DetailWeatherView: BaseView {
     var detailTopView = DetailTopView()
     var cardView = DetailCardView()
     var drawerButton = UIButton()
-    var dailyWeekWeatherTableView = UITableView(frame: .zero, style: .grouped)
+    var dailyWeekWeatherTableView = UITableView(frame: .zero, style: .plain)
     private var totalScrollView = UIScrollView()
     private var contentView = UIView()
     private var id: Int = Int()

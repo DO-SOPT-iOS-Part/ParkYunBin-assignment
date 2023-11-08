@@ -127,11 +127,11 @@ class DetailWeekTableViewCell: UITableViewCell {
                 tempStackView.insertArrangedSubview(tempProgressView, at: 1)
                 tempProgressViewAdded = true
             }
-            
-            tempProgressView?.snp.makeConstraints {
-                $0.width.equalTo(100)
-                $0.height.equalTo(4)
-            }
+//
+//            tempProgressView?.snp.makeConstraints {
+//                $0.width.equalTo(100)
+//                $0.height.equalTo(4)
+//            }
         }
     }
     
