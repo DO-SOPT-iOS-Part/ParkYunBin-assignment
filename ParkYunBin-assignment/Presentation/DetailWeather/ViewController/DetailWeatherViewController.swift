@@ -9,10 +9,16 @@ import UIKit
 
 class DetailWeatherViewController: BaseViewController {
     
+    // MARK: - Properties
+    
+    private var dummyData = WeekWeather.totalWeekDummy()
+    var id: Int = 0
+    
     // MARK: - UI Components
     
     private var detailWeatherView = DetailWeatherView()
-    var id: Int = 0
+    
+    // MARK: - Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,18 +53,34 @@ class DetailWeatherViewController: BaseViewController {
     func delegate() {
         detailWeatherView.dailyWeekWeatherTableView.delegate = self
         detailWeatherView.dailyWeekWeatherTableView.dataSource = self
-        detailWeatherView.dailyWeekWeatherTableView.register(DetailWeekTableViewCell.self, forCellReuseIdentifier: DetailWeekTableViewCell.identifier)
+        detailWeatherView.dailyWeekWeatherTableView.register(DetailWeekTableViewCell.self,
+                                                             forCellReuseIdentifier: DetailWeekTableViewCell.identifier)
 
     }
     
     func detailDataBind(homeWeather: HomeWeather, id: Int) {
         
+        self.id = id
         let dummyList = DetailWeather.totalDummy()
-        
         guard let idMatchedData = dummyList.first(where: {$0.id == id}) else { return }
-        
         detailWeatherView.cardView.dataBind(detailWeather: idMatchedData.timeLine)
         detailWeatherView.detailTopView.dataBind(homeWeather: homeWeather)
+    }
+    
+    /// 가장 높은 온도와 낮은 온도를 찾아주는 함수
+    private func findHighestTemp(dailyDummy: [DailyWeather]) -> Int {
+        let highestTempArray = dailyDummy.map { $0.highestTemp }
+        let maxHighestTemp = highestTempArray.max()
+        print(maxHighestTemp ?? 0, "야ㅑ야야야야야야ㅑ야야")
+        return maxHighestTemp ?? 0
+    }
+    
+    private func findLowestTemp(dailyDummy: [DailyWeather]) -> Int {
+        let lowestTempArray = dailyDummy.map { $0.lowestTemp }
+        let minLowestTemp = lowestTempArray.min()
+        print(minLowestTemp ?? 0, "야ㅑ야야야야야야ㅑ야야")
+
+        return minLowestTemp ?? 0
     }
     
     @objc
@@ -72,13 +94,24 @@ extension DetailWeatherViewController: UITableViewDelegate {}
 
 extension DetailWeatherViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        let dailyWeatherDummy = WeekWeather.totalWeekDummy()[self.id].dailyWeathers
+        return dailyWeatherDummy.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let detailWeekTableViewCell = tableView.dequeueReusableCell(withIdentifier: DetailWeekTableViewCell.identifier) as? DetailWeekTableViewCell else {return UITableViewCell()}
-        detailWeekTableViewCell.setCurrentTemp(totalHighestTemp: 11, totalLowestTemp: 30, lowestTemp: 15, highestTemp: 20)
-        detailWeekTableViewCell.tempProgressView.setCurrentTemp(lowestTemp: 12, highestTemp: 19)
+        
+        let dailyWeatherDummy = WeekWeather.totalWeekDummy()[self.id].dailyWeathers
+        let rowDummy = dailyWeatherDummy[indexPath.row]
+        let highestTemp = findHighestTemp(dailyDummy: dailyWeatherDummy)
+        let lowestTemp = findLowestTemp(dailyDummy: dailyWeatherDummy)
+        
+        detailWeekTableViewCell.setCurrentTemp(totalHighestTemp: highestTemp,
+                                               totalLowestTemp: lowestTemp,
+                                               lowestTemp: rowDummy.lowestTemp,
+                                               highestTemp: rowDummy.highestTemp)
+        detailWeekTableViewCell.cellDataBind(daily: rowDummy.day, weather: rowDummy.weather.icon)
+        detailWeekTableViewCell.selectionStyle = .none
         return detailWeekTableViewCell
     }
     

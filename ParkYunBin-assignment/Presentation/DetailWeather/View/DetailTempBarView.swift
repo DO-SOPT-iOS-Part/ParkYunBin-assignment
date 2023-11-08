@@ -40,13 +40,11 @@ class DetailTempBarView: BaseView {
     private var progressInnerView = UIView()
     
     
-    init(totalHighestTemp: Int, totalLowestTemp: Int, lowestTemp: Int, highestTemp: Int) {
+    init(totalHighestTemp: Int, totalLowestTemp: Int) {
         super.init(frame: CGRect())
         
         self.totalHighestTemp = totalHighestTemp
         self.totalLowestTemp = totalLowestTemp
-        self.lowestTemp = lowestTemp
-        self.highestTemp = highestTemp
         self.width = 100.0 / (Double(totalHighestTemp - totalLowestTemp) + 1.0)
 
     }
@@ -81,11 +79,6 @@ class DetailTempBarView: BaseView {
         progressInnerView.snp.makeConstraints {
             $0.height.trailing.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
-//            $0.trailing.equalToSuperview().inset(10)
-//            $0.leading.equalToSuperview().inset(7)
-//
-//            $0.trailing.equalToSuperview().inset(width * Double((totalHighestTemp - highestTemp)))
-//            $0.leading.equalToSuperview().inset(width * Double((totalLowestTemp - lowestTemp)))
         }
         
     }
@@ -94,11 +87,5 @@ class DetailTempBarView: BaseView {
         self.lowestTemp = lowestTemp
         self.highestTemp = highestTemp
         self.width = Double(bounds.width) / (Double(totalHighestTemp - totalLowestTemp) + 1.0)
-        
-//        progressInnerView.snp.remakeConstraints {
-//            $0.height.equalToSuperview()
-//            $0.trailing.equalToSuperview().inset(width * Double((totalHighestTemp - highestTemp)))
-//            $0.leading.equalToSuperview().inset(width * Double((totalLowestTemp - lowestTemp)))
-//        }
     }
 }

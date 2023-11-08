@@ -15,8 +15,8 @@ struct WeekWeather {
 struct DailyWeather {
     let day: String
     let weather: WeatherIcon
-    let highestTemp: Int
     let lowestTemp: Int
+    let highestTemp: Int
 }
 
 extension WeekWeather {
@@ -33,93 +33,93 @@ extension WeekWeather {
 
 extension DailyWeather {
     static func firstWeekDummy() -> [DailyWeather] {
-        return [DailyWeather(day: "오늘", weather: .cloudyNight, highestTemp: 15, lowestTemp: 21),
-                DailyWeather(day: "월", weather: .littleRain, highestTemp: 18, lowestTemp: 22),
-                DailyWeather(day: "화", weather: .rain, highestTemp: 12, lowestTemp: 23),
-                DailyWeather(day: "수", weather: .rainyAfternoon, highestTemp: 16, lowestTemp: 21),
-                DailyWeather(day: "목", weather: .rain, highestTemp: 17, lowestTemp: 21),
-                DailyWeather(day: "금", weather: .thunder, highestTemp: 11, lowestTemp: 21),
-                DailyWeather(day: "토", weather: .rainyAfternoon, highestTemp: 13, lowestTemp: 25),
-                DailyWeather(day: "일", weather: .rainyAfternoon, highestTemp: 14, lowestTemp: 21),
-                DailyWeather(day: "월", weather: .cloudyNight, highestTemp: 17, lowestTemp: 28),
-                DailyWeather(day: "화", weather: .thunder, highestTemp: 15, lowestTemp: 21)]
+        return [DailyWeather(day: "오늘", weather: .cloudyNight, lowestTemp: 15, highestTemp: 21),
+                DailyWeather(day: "월", weather: .littleRain, lowestTemp: 18, highestTemp: 22),
+                DailyWeather(day: "화", weather: .rain, lowestTemp: 12, highestTemp: 23),
+                DailyWeather(day: "수", weather: .rainyAfternoon, lowestTemp: 16, highestTemp: 21),
+                DailyWeather(day: "목", weather: .rain, lowestTemp: 17, highestTemp: 21),
+                DailyWeather(day: "금", weather: .thunder, lowestTemp: 11, highestTemp: 21),
+                DailyWeather(day: "토", weather: .rainyAfternoon, lowestTemp: 13, highestTemp: 25),
+                DailyWeather(day: "일", weather: .rainyAfternoon, lowestTemp: 14, highestTemp: 21),
+                DailyWeather(day: "월", weather: .cloudyNight, lowestTemp: 17, highestTemp: 28),
+                DailyWeather(day: "화", weather: .thunder, lowestTemp: 15, highestTemp: 21)]
     }
     
     static func secondWeekDummy() -> [DailyWeather] {
-        return [DailyWeather(day: "오늘", weather: .cloudyNight, highestTemp: 15, lowestTemp: 21),
-                DailyWeather(day: "월", weather: .littleRain, highestTemp: 18, lowestTemp: 22),
-                DailyWeather(day: "화", weather: .rain, highestTemp: 12, lowestTemp: 23),
-                DailyWeather(day: "수", weather: .rainyAfternoon, highestTemp: 16, lowestTemp: 21),
-                DailyWeather(day: "목", weather: .rain, highestTemp: 17, lowestTemp: 21),
-                DailyWeather(day: "금", weather: .thunder, highestTemp: 11, lowestTemp: 21),
-                DailyWeather(day: "토", weather: .rainyAfternoon, highestTemp: 13, lowestTemp: 25),
-                DailyWeather(day: "일", weather: .rainyAfternoon, highestTemp: 14, lowestTemp: 21),
-                DailyWeather(day: "월", weather: .cloudyNight, highestTemp: 17, lowestTemp: 28),
-                DailyWeather(day: "화", weather: .thunder, highestTemp: 15, lowestTemp: 21)]
+        return [DailyWeather(day: "오늘", weather: .cloudyNight, lowestTemp: 15, highestTemp: 21),
+                DailyWeather(day: "월", weather: .littleRain, lowestTemp: 18, highestTemp: 22),
+                DailyWeather(day: "화", weather: .rain, lowestTemp: 12, highestTemp: 23),
+                DailyWeather(day: "수", weather: .rainyAfternoon, lowestTemp: 16, highestTemp: 21),
+                DailyWeather(day: "목", weather: .rain, lowestTemp: 17, highestTemp: 21),
+                DailyWeather(day: "금", weather: .thunder, lowestTemp: 11, highestTemp: 21),
+                DailyWeather(day: "토", weather: .rainyAfternoon, lowestTemp: 13, highestTemp: 25),
+                DailyWeather(day: "일", weather: .rainyAfternoon, lowestTemp: 14, highestTemp: 21),
+                DailyWeather(day: "월", weather: .cloudyNight, lowestTemp: 17, highestTemp: 28),
+                DailyWeather(day: "화", weather: .thunder, lowestTemp: 15, highestTemp: 21)]
     }
     
     static func thirdWeekDummy() -> [DailyWeather] {
-        return [DailyWeather(day: "오늘", weather: .cloudyNight, highestTemp: 15, lowestTemp: 21),
-                DailyWeather(day: "월", weather: .littleRain, highestTemp: 18, lowestTemp: 22),
-                DailyWeather(day: "화", weather: .rain, highestTemp: 12, lowestTemp: 23),
-                DailyWeather(day: "수", weather: .rainyAfternoon, highestTemp: 16, lowestTemp: 21),
-                DailyWeather(day: "목", weather: .rain, highestTemp: 17, lowestTemp: 21),
-                DailyWeather(day: "금", weather: .thunder, highestTemp: 11, lowestTemp: 21),
-                DailyWeather(day: "토", weather: .rainyAfternoon, highestTemp: 13, lowestTemp: 25),
-                DailyWeather(day: "일", weather: .rainyAfternoon, highestTemp: 14, lowestTemp: 21),
-                DailyWeather(day: "월", weather: .cloudyNight, highestTemp: 17, lowestTemp: 28),
-                DailyWeather(day: "화", weather: .thunder, highestTemp: 15, lowestTemp: 21)]
+        return [DailyWeather(day: "오늘", weather: .cloudyNight, lowestTemp: 15, highestTemp: 21),
+                DailyWeather(day: "월", weather: .littleRain, lowestTemp: 18, highestTemp: 22),
+                DailyWeather(day: "화", weather: .rain, lowestTemp: 12, highestTemp: 23),
+                DailyWeather(day: "수", weather: .rainyAfternoon, lowestTemp: 16, highestTemp: 21),
+                DailyWeather(day: "목", weather: .rain, lowestTemp: 17, highestTemp: 21),
+                DailyWeather(day: "금", weather: .thunder, lowestTemp: 11, highestTemp: 21),
+                DailyWeather(day: "토", weather: .rainyAfternoon, lowestTemp: 13, highestTemp: 25),
+                DailyWeather(day: "일", weather: .rainyAfternoon, lowestTemp: 14, highestTemp: 21),
+                DailyWeather(day: "월", weather: .cloudyNight, lowestTemp: 17, highestTemp: 28),
+                DailyWeather(day: "화", weather: .thunder, lowestTemp: 15, highestTemp: 21)]
     }
     
     static func fourthWeekDummy() -> [DailyWeather] {
-        return [DailyWeather(day: "오늘", weather: .cloudyNight, highestTemp: 15, lowestTemp: 21),
-                DailyWeather(day: "월", weather: .littleRain, highestTemp: 18, lowestTemp: 22),
-                DailyWeather(day: "화", weather: .rain, highestTemp: 12, lowestTemp: 23),
-                DailyWeather(day: "수", weather: .rainyAfternoon, highestTemp: 16, lowestTemp: 21),
-                DailyWeather(day: "목", weather: .rain, highestTemp: 17, lowestTemp: 21),
-                DailyWeather(day: "금", weather: .thunder, highestTemp: 11, lowestTemp: 21),
-                DailyWeather(day: "토", weather: .rainyAfternoon, highestTemp: 13, lowestTemp: 25),
-                DailyWeather(day: "일", weather: .rainyAfternoon, highestTemp: 14, lowestTemp: 21),
-                DailyWeather(day: "월", weather: .cloudyNight, highestTemp: 17, lowestTemp: 28),
-                DailyWeather(day: "화", weather: .thunder, highestTemp: 15, lowestTemp: 21)]
+        return [DailyWeather(day: "오늘", weather: .cloudyNight, lowestTemp: 15, highestTemp: 21),
+                DailyWeather(day: "월", weather: .littleRain, lowestTemp: 18, highestTemp: 22),
+                DailyWeather(day: "화", weather: .rain, lowestTemp: 12, highestTemp: 23),
+                DailyWeather(day: "수", weather: .rainyAfternoon, lowestTemp: 16, highestTemp: 21),
+                DailyWeather(day: "목", weather: .rain, lowestTemp: 17, highestTemp: 21),
+                DailyWeather(day: "금", weather: .thunder, lowestTemp: 11, highestTemp: 21),
+                DailyWeather(day: "토", weather: .rainyAfternoon, lowestTemp: 13, highestTemp: 25),
+                DailyWeather(day: "일", weather: .rainyAfternoon, lowestTemp: 14, highestTemp: 21),
+                DailyWeather(day: "월", weather: .cloudyNight, lowestTemp: 17, highestTemp: 28),
+                DailyWeather(day: "화", weather: .thunder, lowestTemp: 15, highestTemp: 21)]
     }
     
     static func fifthWeekDummy() -> [DailyWeather] {
-        return [DailyWeather(day: "오늘", weather: .cloudyNight, highestTemp: 15, lowestTemp: 21),
-                DailyWeather(day: "월", weather: .littleRain, highestTemp: 18, lowestTemp: 22),
-                DailyWeather(day: "화", weather: .rain, highestTemp: 12, lowestTemp: 23),
-                DailyWeather(day: "수", weather: .rainyAfternoon, highestTemp: 16, lowestTemp: 21),
-                DailyWeather(day: "목", weather: .rain, highestTemp: 17, lowestTemp: 21),
-                DailyWeather(day: "금", weather: .thunder, highestTemp: 11, lowestTemp: 21),
-                DailyWeather(day: "토", weather: .rainyAfternoon, highestTemp: 13, lowestTemp: 25),
-                DailyWeather(day: "일", weather: .rainyAfternoon, highestTemp: 14, lowestTemp: 21),
-                DailyWeather(day: "월", weather: .cloudyNight, highestTemp: 17, lowestTemp: 28),
-                DailyWeather(day: "화", weather: .thunder, highestTemp: 15, lowestTemp: 21)]
+        return [DailyWeather(day: "오늘", weather: .cloudyNight, lowestTemp: 15, highestTemp: 21),
+                DailyWeather(day: "월", weather: .littleRain, lowestTemp: 18, highestTemp: 22),
+                DailyWeather(day: "화", weather: .rain, lowestTemp: 12, highestTemp: 23),
+                DailyWeather(day: "수", weather: .rainyAfternoon, lowestTemp: 16, highestTemp: 21),
+                DailyWeather(day: "목", weather: .rain, lowestTemp: 17, highestTemp: 21),
+                DailyWeather(day: "금", weather: .thunder, lowestTemp: 11, highestTemp: 21),
+                DailyWeather(day: "토", weather: .rainyAfternoon, lowestTemp: 13, highestTemp: 25),
+                DailyWeather(day: "일", weather: .rainyAfternoon, lowestTemp: 14, highestTemp: 21),
+                DailyWeather(day: "월", weather: .cloudyNight, lowestTemp: 17, highestTemp: 28),
+                DailyWeather(day: "화", weather: .thunder, lowestTemp: 15, highestTemp: 21)]
     }
     
     static func sixthWeekDummy() -> [DailyWeather] {
-        return [DailyWeather(day: "오늘", weather: .cloudyNight, highestTemp: 15, lowestTemp: 21),
-                DailyWeather(day: "월", weather: .littleRain, highestTemp: 18, lowestTemp: 22),
-                DailyWeather(day: "화", weather: .rain, highestTemp: 12, lowestTemp: 23),
-                DailyWeather(day: "수", weather: .rainyAfternoon, highestTemp: 16, lowestTemp: 21),
-                DailyWeather(day: "목", weather: .rain, highestTemp: 17, lowestTemp: 21),
-                DailyWeather(day: "금", weather: .thunder, highestTemp: 11, lowestTemp: 21),
-                DailyWeather(day: "토", weather: .rainyAfternoon, highestTemp: 13, lowestTemp: 25),
-                DailyWeather(day: "일", weather: .rainyAfternoon, highestTemp: 14, lowestTemp: 21),
-                DailyWeather(day: "월", weather: .cloudyNight, highestTemp: 17, lowestTemp: 28),
-                DailyWeather(day: "화", weather: .thunder, highestTemp: 15, lowestTemp: 21)]
+        return [DailyWeather(day: "오늘", weather: .cloudyNight, lowestTemp: 15, highestTemp: 21),
+                DailyWeather(day: "월", weather: .littleRain, lowestTemp: 18, highestTemp: 22),
+                DailyWeather(day: "화", weather: .rain, lowestTemp: 12, highestTemp: 23),
+                DailyWeather(day: "수", weather: .rainyAfternoon, lowestTemp: 16, highestTemp: 21),
+                DailyWeather(day: "목", weather: .rain, lowestTemp: 17, highestTemp: 21),
+                DailyWeather(day: "금", weather: .thunder, lowestTemp: 11, highestTemp: 21),
+                DailyWeather(day: "토", weather: .rainyAfternoon, lowestTemp: 13, highestTemp: 25),
+                DailyWeather(day: "일", weather: .rainyAfternoon, lowestTemp: 14, highestTemp: 21),
+                DailyWeather(day: "월", weather: .cloudyNight, lowestTemp: 17, highestTemp: 28),
+                DailyWeather(day: "화", weather: .thunder, lowestTemp: 15, highestTemp: 21)]
     }
     
     static func seventhWeekDummy() -> [DailyWeather] {
-        return [DailyWeather(day: "오늘", weather: .cloudyNight, highestTemp: 15, lowestTemp: 21),
-                DailyWeather(day: "월", weather: .littleRain, highestTemp: 18, lowestTemp: 22),
-                DailyWeather(day: "화", weather: .rain, highestTemp: 12, lowestTemp: 23),
-                DailyWeather(day: "수", weather: .rainyAfternoon, highestTemp: 16, lowestTemp: 21),
-                DailyWeather(day: "목", weather: .rain, highestTemp: 17, lowestTemp: 21),
-                DailyWeather(day: "금", weather: .thunder, highestTemp: 11, lowestTemp: 21),
-                DailyWeather(day: "토", weather: .rainyAfternoon, highestTemp: 13, lowestTemp: 25),
-                DailyWeather(day: "일", weather: .rainyAfternoon, highestTemp: 14, lowestTemp: 21),
-                DailyWeather(day: "월", weather: .cloudyNight, highestTemp: 17, lowestTemp: 28),
-                DailyWeather(day: "화", weather: .thunder, highestTemp: 15, lowestTemp: 21)]
+        return [DailyWeather(day: "오늘", weather: .cloudyNight, lowestTemp: 15, highestTemp: 21),
+                DailyWeather(day: "월", weather: .littleRain, lowestTemp: 18, highestTemp: 22),
+                DailyWeather(day: "화", weather: .rain, lowestTemp: 12, highestTemp: 23),
+                DailyWeather(day: "수", weather: .rainyAfternoon, lowestTemp: 16, highestTemp: 21),
+                DailyWeather(day: "목", weather: .rain, lowestTemp: 17, highestTemp: 21),
+                DailyWeather(day: "금", weather: .thunder, lowestTemp: 11, highestTemp: 21),
+                DailyWeather(day: "토", weather: .rainyAfternoon, lowestTemp: 13, highestTemp: 25),
+                DailyWeather(day: "일", weather: .rainyAfternoon, lowestTemp: 14, highestTemp: 21),
+                DailyWeather(day: "월", weather: .cloudyNight, lowestTemp: 17, highestTemp: 28),
+                DailyWeather(day: "화", weather: .thunder, lowestTemp: 15, highestTemp: 21)]
     }
 }

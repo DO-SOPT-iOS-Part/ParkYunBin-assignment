@@ -15,22 +15,20 @@ class DetailWeekTableViewCell: UITableViewCell {
     // MARK: - Properties
         
     static let identifier = "DetailWeekTableViewCell"
-    var totalHighestTemp: Int = 30
-    var totalLowestTemp: Int = 11
-    var lowestTemp: Int = 15
-    var highestTemp: Int = 24
+    var totalHighestTemp: Int = Int()
+    var totalLowestTemp: Int = Int()
+    var lowestTemp: Int = Int()
+    var highestTemp: Int = Int()
+    private var tempProgressViewAdded = false
 
     // MARK: - UI Components
     
     private let seperateBar = UIView()
     private let dailyLabel = UILabel()
     private let weatherIcon = UIImageView()
-    private let higestTempLabel = UILabel()
+    private let highestTempLabel = UILabel()
     private let lowestTempLabel = UILabel()
-    lazy var tempProgressView = DetailTempBarView(totalHighestTemp: self.totalHighestTemp,
-                                                  totalLowestTemp: self.totalLowestTemp,
-                                                  lowestTemp: self.lowestTemp,
-                                                  highestTemp: self.highestTemp)
+    lazy var tempProgressView: DetailTempBarView? = nil
     private let tempStackView = UIStackView()
     
     // MARK: - init
@@ -64,7 +62,7 @@ class DetailWeekTableViewCell: UITableViewCell {
             $0.image = WeatherIcon.cloudyNight.icon
         }
         
-        higestTempLabel.do {
+        highestTempLabel.do {
             $0.text = "15°"
             $0.font = .medium(size: 22)
             $0.textColor = .systemGray
@@ -85,7 +83,7 @@ class DetailWeekTableViewCell: UITableViewCell {
     
     private func hierarchy() {
         contentView.addSubViews(seperateBar, dailyLabel, weatherIcon, tempStackView)
-        tempStackView.addArrangeSubViews(higestTempLabel, tempProgressView, lowestTempLabel)
+        tempStackView.addArrangeSubViews(highestTempLabel, lowestTempLabel)
     }
     
     private func setLayout() {
@@ -115,6 +113,24 @@ class DetailWeekTableViewCell: UITableViewCell {
         self.totalHighestTemp = totalHighestTemp
         self.lowestTemp = lowestTemp
         self.highestTemp = highestTemp
+        lowestTempLabel.text = "\(lowestTemp)°"
+        highestTempLabel.text = "\(highestTemp)°"
+        tempProgressView = DetailTempBarView(totalHighestTemp: totalHighestTemp,
+                                             totalLowestTemp: totalLowestTemp)
+        
+        /// 최저온도 최저온도를 VC로부터 받고 난 이후, 인스턴스를 생성하고 StackView에 삽입합니다.
+        if !tempProgressViewAdded {
+            tempProgressView = DetailTempBarView(totalHighestTemp: totalHighestTemp, totalLowestTemp: totalLowestTemp)
+            tempProgressView?.setCurrentTemp(lowestTemp: lowestTemp, highestTemp: highestTemp)
+            if let tempProgressView = tempProgressView {
+                tempStackView.insertArrangedSubview(tempProgressView, at: 1)
+                tempProgressViewAdded = true
+            }
+        }
     }
     
+    func cellDataBind(daily: String, weather: UIImage) {
+        dailyLabel.text = daily
+        weatherIcon.image = weather
+    }
 }
