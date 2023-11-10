@@ -82,8 +82,13 @@ class DetailWeekTableViewCell: UITableViewCell {
     }
     
     private func hierarchy() {
-        contentView.addSubViews(seperateBar, dailyLabel, weatherIcon, tempStackView)
-        tempStackView.addArrangeSubViews(lowestTempLabel, highestTempLabel)
+        contentView.addSubViews(seperateBar,
+                                dailyLabel,
+                                weatherIcon,
+                                tempStackView)
+        
+        tempStackView.addArrangeSubViews(lowestTempLabel,
+                                         highestTempLabel)
     }
     
     private func setLayout() {
@@ -121,17 +126,14 @@ class DetailWeekTableViewCell: UITableViewCell {
         
         /// 최저온도 최저온도를 VC로부터 받고 난 이후, 인스턴스를 생성하고 StackView에 삽입합니다.
         if !tempProgressViewAdded {
-            tempProgressView = DetailTempBarView(totalHighestTemp: totalHighestTemp, totalLowestTemp: totalLowestTemp)
-            tempProgressView?.setCurrentTemp(lowestTemp: lowestTemp, highestTemp: highestTemp)
+            tempProgressView = DetailTempBarView(totalHighestTemp: totalHighestTemp,
+                                                 totalLowestTemp: totalLowestTemp)
+            tempProgressView?.setCurrentTemp(lowestTemp: lowestTemp,
+                                             highestTemp: highestTemp)
             if let tempProgressView = tempProgressView {
                 tempStackView.insertArrangedSubview(tempProgressView, at: 1)
                 tempProgressViewAdded = true
             }
-//
-//            tempProgressView?.snp.makeConstraints {
-//                $0.width.equalTo(100)
-//                $0.height.equalTo(4)
-//            }
         }
     }
     

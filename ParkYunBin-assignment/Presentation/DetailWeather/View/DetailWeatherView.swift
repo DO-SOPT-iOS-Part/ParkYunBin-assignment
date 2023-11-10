@@ -17,7 +17,6 @@ final class DetailWeatherView: BaseView {
     // MARK: - UI Components
     
     var detailTopView = DetailTopView()
-    var cardView = DetailCardView()
     var drawerButton = UIButton()
     var dailyWeekWeatherTableView = UITableView(frame: .zero, style: .plain)
     private var totalScrollView = UIScrollView()
@@ -35,10 +34,10 @@ final class DetailWeatherView: BaseView {
         
         dailyWeekWeatherTableView.do {
             $0.backgroundColor = UIColor(white: 1, alpha: 0.03)
-            $0.isScrollEnabled = false
             $0.layer.cornerRadius = 15
             $0.layer.borderWidth = 0.5
             $0.layer.borderColor = UIColor(white: 1, alpha: 0.25).cgColor
+            $0.sectionHeaderTopPadding = 0
         }
         
         totalScrollView.do {
@@ -54,10 +53,8 @@ final class DetailWeatherView: BaseView {
         
         totalScrollView.addSubViews(contentView)
         contentView.addSubViews(detailTopView,
-                                cardView,
                                 dailyWeekWeatherTableView)
         
-        dailyWeekWeatherTableView.tableHeaderView = DetailDailyTableHeaderView()
     }
     
     override func setLayout() {
@@ -81,15 +78,10 @@ final class DetailWeatherView: BaseView {
             $0.centerX.equalToSuperview()
         }
         
-        cardView.snp.makeConstraints {
+        dailyWeekWeatherTableView.snp.makeConstraints {
             $0.top.equalTo(detailTopView.snp.bottom).offset(44)
             $0.leading.trailing.equalToSuperview().inset(20)
-        }
-        
-        dailyWeekWeatherTableView.snp.makeConstraints {
-            $0.top.equalTo(cardView.snp.bottom).offset(10)
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(675)
+            $0.height.equalTo(500)
             $0.bottom.equalTo(contentView.snp.bottom)
         }
         

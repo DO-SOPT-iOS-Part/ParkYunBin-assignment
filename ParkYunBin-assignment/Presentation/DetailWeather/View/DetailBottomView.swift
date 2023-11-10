@@ -22,7 +22,6 @@ final class DetailBottomView: BaseView {
     private var dotIcon = UIImageView()
     private var pageStackView = UIStackView()
     var drawerButton = UIButton()
-
     
     // MARK: - Override Functions
     

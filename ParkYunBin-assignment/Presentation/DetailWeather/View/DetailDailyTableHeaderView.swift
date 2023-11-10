@@ -11,6 +11,8 @@ import SnapKit
 import Then
 
 class DetailDailyTableHeaderView: BaseView {
+    
+    // MARK: - Properties
 
     private let calenderImageView = UIImageView(image: UIImage(systemName: "calendar"))
     private let topLabel = UILabel()
