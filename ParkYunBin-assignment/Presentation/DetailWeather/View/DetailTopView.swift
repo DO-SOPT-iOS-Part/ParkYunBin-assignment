@@ -73,5 +73,3 @@ final class DetailTopView: BaseView {
         highLowTempLabel.text = "최고:\(homeWeather.highestTemp)° 최저:\(homeWeather.lowestTemp)°"
     }
 }
-
-

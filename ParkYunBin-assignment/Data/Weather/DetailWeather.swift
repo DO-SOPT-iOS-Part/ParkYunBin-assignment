@@ -18,30 +18,6 @@ struct WeatherTimeLine {
     let timeTemp: String
 }
 
-@frozen
-enum WeatherIcon {
-    case cloudyNight
-    case littleRain
-    case rain
-    case rainyAfternoon
-    case thunder
-    
-    var icon: UIImage {
-        switch self {
-        case .cloudyNight:
-            return Image.cloudyNight
-        case .littleRain:
-            return Image.littleRain
-        case .rain:
-            return Image.rain
-        case .rainyAfternoon:
-            return Image.rainyAfternoon
-        case .thunder:
-            return Image.thunder
-        }
-    }
-}
-
 extension DetailWeather {
     static func totalDummy() -> [DetailWeather] {
         return [DetailWeather(id: 0, timeLine: WeatherTimeLine.firstDummy()),

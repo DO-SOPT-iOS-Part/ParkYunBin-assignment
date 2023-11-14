@@ -17,17 +17,13 @@ final class DetailWeatherView: BaseView {
     // MARK: - UI Components
     
     var detailTopView = DetailTopView()
-    var cardView = DetailCardView()
     var drawerButton = UIButton()
+    var dailyWeekWeatherTableView = UITableView(frame: .zero, style: .plain)
     private var totalScrollView = UIScrollView()
     private var contentView = UIView()
     private var id: Int = Int()
     private let backgroundImageView = UIImageView()
-    private let bottomLineView = UIView()
-    private var mapButton = UIButton()
-    private var locationIcon = UIImageView()
-    private var dotIcon = UIImageView()
-    private var pageStackView = UIStackView()
+    private let detailBottomview = DetailBottomView()
     
     // MARK: - Override Functions
 
@@ -36,31 +32,12 @@ final class DetailWeatherView: BaseView {
             $0.image = Image.detailBackground
         }
         
-        bottomLineView.do {
-            $0.backgroundColor = UIColor(white: 1, alpha: 0.5)
-        }
-        
-        mapButton.do {
-            $0.setImage(Image.map, for: .normal)
-        }
-        
-        drawerButton.do {
-            $0.setImage(Image.list, for: .normal)
-        }
-        
-        locationIcon.do {
-            $0.image = Image.location
-        }
-        
-        dotIcon.do {
-            $0.image = Image.ellipse
-        }
-        
-        pageStackView.do {
-            $0.addArrangeSubViews(locationIcon, dotIcon)
-            $0.axis = .horizontal
-            $0.spacing = 4
-            $0.alignment = .center
+        dailyWeekWeatherTableView.do {
+            $0.backgroundColor = UIColor(white: 1, alpha: 0.03)
+            $0.layer.cornerRadius = 15
+            $0.layer.borderWidth = 0.5
+            $0.layer.borderColor = UIColor(white: 1, alpha: 0.25).cgColor
+            $0.sectionHeaderTopPadding = 0
         }
         
         totalScrollView.do {
@@ -70,16 +47,14 @@ final class DetailWeatherView: BaseView {
     
     override func hieararchy() {
         self.addSubViews(backgroundImageView,
-                         totalScrollView
+                         totalScrollView,
+                         detailBottomview
         )
         
         totalScrollView.addSubViews(contentView)
         contentView.addSubViews(detailTopView,
-                                cardView,
-                                bottomLineView,
-                                mapButton,
-                                drawerButton,
-                                pageStackView)
+                                dailyWeekWeatherTableView)
+        
     }
     
     override func setLayout() {
@@ -89,13 +64,13 @@ final class DetailWeatherView: BaseView {
         }
         
         totalScrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(detailBottomview.snp.top)
         }
         
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.width.equalTo(Size.width)
-            $0.height.equalToSuperview()
         }
         
         detailTopView.snp.makeConstraints {
@@ -103,41 +78,22 @@ final class DetailWeatherView: BaseView {
             $0.centerX.equalToSuperview()
         }
         
-        cardView.snp.makeConstraints {
+        dailyWeekWeatherTableView.snp.makeConstraints {
             $0.top.equalTo(detailTopView.snp.bottom).offset(44)
             $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(500)
+            $0.bottom.equalTo(contentView.snp.bottom)
         }
         
-        bottomLineView.snp.makeConstraints {
-            $0.height.equalTo(0.2)
-            $0.width.equalToSuperview()
-            $0.bottom.equalTo(safeAreaLayoutGuide).inset(62)
+        detailBottomview.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(safeAreaLayoutGuide)
+            $0.height.equalTo(62)
         }
         
-        mapButton.snp.makeConstraints {
-            $0.height.width.equalTo(44)
-            $0.leading.equalToSuperview().inset(10)
-            $0.top.equalTo(bottomLineView.snp.bottom).offset(4)
-        }
-        
-        drawerButton.snp.makeConstraints {
-            $0.height.width.equalTo(44)
-            $0.trailing.equalToSuperview().inset(10)
-            $0.top.equalTo(bottomLineView.snp.bottom).offset(4)
-        }
-        
-        pageStackView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(bottomLineView.snp.bottom).offset(14)
-        }
-        
-        locationIcon.snp.makeConstraints {
-            $0.height.width.equalTo(24)
-        }
-        
-        dotIcon.snp.makeConstraints {
-            $0.height.width.equalTo(24)
-        }
+        dailyWeekWeatherTableView.tableHeaderView?.frame = .init(origin: .zero,
+                                                                 size: .init(width: UIScreen.main.bounds.width,
+                                                                             height: 38))
     }
 }
 

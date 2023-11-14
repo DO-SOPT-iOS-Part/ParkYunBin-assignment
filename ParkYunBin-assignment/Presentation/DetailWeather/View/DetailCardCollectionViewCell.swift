@@ -1,8 +1,8 @@
 //
-//  DetailWeatherCell.swift
+//  DetailCardCollectionViewCell.swift
 //  ParkYunBin-assignment
 //
-//  Created by 박윤빈 on 2023/10/26.
+//  Created by 박윤빈 on 2023/11/09.
 //
 
 import UIKit
@@ -10,20 +10,34 @@ import UIKit
 import SnapKit
 import Then
 
-final class DetailWeatherCell: BaseView {
+final class DetailCardCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-
+    
+    static let identifier: String = "DetailCardCollectionViewCell"
+    
     // MARK: - UI Components
     
     private var timeLabel = UILabel()
     private var weatherImageView = UIImageView()
     private var tempLabel = UILabel()
     private var cellStackView = UIStackView()
-
+    
     // MARK: - Override Functions
-
-    override func configureUI() {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = .clear
+        self.configureUI()
+        self.hieararchy()
+        self.setLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureUI() {
         
         timeLabel.do {
             $0.font = .medium(size: 17)
@@ -43,11 +57,11 @@ final class DetailWeatherCell: BaseView {
         }
     }
     
-    override func hieararchy() {
-            addSubview(cellStackView)
-        }
+    private func hieararchy() {
+        contentView.addSubview(cellStackView)
+    }
     
-    override func setLayout() {
+    private func setLayout() {
         cellStackView.snp.makeConstraints {
             $0.width.equalTo(44)
         }
