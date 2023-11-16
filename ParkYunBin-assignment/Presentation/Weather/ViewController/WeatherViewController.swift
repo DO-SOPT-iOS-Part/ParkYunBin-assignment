@@ -24,6 +24,14 @@ class WeatherViewController: BaseViewController {
         super.viewDidLoad()
         delegate()
         setListData()
+        
+        Task {
+            if let result = try await WeatherService.shared.postWeatherData(cityName: "gongju") {
+                print(result)
+            } else {
+                print("땡임")
+            }
+        }
     }
     
     // MARK: - Override Functions
@@ -83,11 +91,8 @@ class WeatherViewController: BaseViewController {
     private func setClosure(list: WeatherBlockView) {
         list.handler = {[weak self] in
             guard let self else { return }
-//            let detailViewController = DetailWeatherViewController()
             let detailPageViewController = PageDetailViewController()
             detailPageViewController.dataBind(id: list.id)
-//            detailViewController.detailDataBind(homeWeather: list.weatherData ?? HomeWeather.dummyWeather()[0],
-//                                                id: list.id)
             
             navigationController?.pushViewController(detailPageViewController, animated: true)
         }

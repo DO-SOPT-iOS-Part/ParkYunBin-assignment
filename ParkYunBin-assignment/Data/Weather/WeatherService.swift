@@ -9,11 +9,12 @@ import UIKit
 
 class WeatherService {
     static let shared = WeatherService()
+    private let apiKey = Bundle.main.object(forInfoDictionaryKey: Config.Keys.Plist.apiKey) as? String ?? ""
     private init () {}
     
     /// 요청 만들기
     func makeRequest(cityName: String) -> URLRequest {
-        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=\(Config.Keys.Plist.apiKey)")!
+        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=\(apiKey)")!
         var request = URLRequest(url: url)
         
         request.httpMethod = "GET"
