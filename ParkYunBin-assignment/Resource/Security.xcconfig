@@ -1,0 +1,11 @@
+//
+//  Security.xcconfig
+//  ParkYunBin-assignment
+//
+//  Created by 박윤빈 on 2023/11/17.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_KEY = a6d56ab140938e41b2c4e5dd0e5a5172
