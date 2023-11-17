@@ -16,7 +16,7 @@ class WeatherBlockView: UIView {
     
     var handler: (() -> (Void))?
     var id: Int = Int()
-    var weatherData: HomeWeather?
+    var weatherData: WeatherDataModel?
     private let height: CGFloat = 117.0
     private let width: CGFloat = Size.width - 40
     private let position = String()
@@ -42,14 +42,14 @@ class WeatherBlockView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(homeWeahter: HomeWeather) {
+    init(homeWeahter: WeatherDataModel) {
         super.init(frame: CGRect())
         
         weatherData = homeWeahter
-        myPositionLabel.text = homeWeahter.position
-        weatherStateLabel.text = homeWeahter.weather
-        tempStateLabel.text = "\(homeWeahter.currentTemp)°"
-        highLowTempLabel.text = "최고:\(homeWeahter.highestTemp)° 최저:\(homeWeahter.lowestTemp)°"
+        myPositionLabel.text = homeWeahter.name
+        weatherStateLabel.text = homeWeahter.weather[0].description
+        tempStateLabel.text = "\(Int(homeWeahter.main.temp))°"
+        highLowTempLabel.text = "최고:\(Int(homeWeahter.main.tempMax))° 최저:\(Int(homeWeahter.main.tempMin))°"
         id = homeWeahter.id
         
         configureUI()

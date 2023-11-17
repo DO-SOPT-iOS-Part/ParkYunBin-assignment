@@ -4,6 +4,7 @@
 //
 //  Created by 박윤빈 on 2023/11/17.
 //
+// 현재 위치, 현재 온도, 최고온도, 최저온도
 
 import UIKit
 
@@ -14,7 +15,7 @@ class WeatherService {
     
     /// 요청 만들기
     func makeRequest(cityName: String) -> URLRequest {
-        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=\(apiKey)")!
+        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&units=metric&lang=kr&appid=\(apiKey)")!
         var request = URLRequest(url: url)
         
         request.httpMethod = "GET"
