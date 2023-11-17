@@ -48,8 +48,10 @@ class WeatherBlockView: UIView {
         weatherData = homeWeahter
         myPositionLabel.text = homeWeahter.name
         weatherStateLabel.text = homeWeahter.weather[0].description
-        tempStateLabel.text = "\(Int(homeWeahter.main.temp))°"
-        highLowTempLabel.text = "최고:\(Int(homeWeahter.main.tempMax))° 최저:\(Int(homeWeahter.main.tempMin))°"
+        tempStateLabel.text = String(format: "%.1f°", homeWeahter.main.temp)
+        highLowTempLabel.text = String(format: "최고: %.1f°, 최저: %.1f°",
+                                       homeWeahter.main.tempMax,
+                                       homeWeahter.main.tempMin)
         id = homeWeahter.id
         
         configureUI()
