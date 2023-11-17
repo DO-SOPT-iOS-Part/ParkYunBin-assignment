@@ -12,7 +12,10 @@ class WeatherViewController: BaseViewController {
     // MARK: - Properties
     
     // 검색 결과를 넣어줄 배열
-    private var filter = [HomeWeather]()
+//    private var filter = [HomeWeather]()
+    private var filter = [WeatherDataModel]()
+    private var citiesList = ["gongju", "jeju", "gumi", "sokcho", "seoul"]
+    private var responseData: [WeatherDataModel] = []
     
     // MARK: - UI Components
     
@@ -23,7 +26,7 @@ class WeatherViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate()
-        setListData()
+        getCitiesWeather(cities: self.citiesList)
     }
     
     // MARK: - Override Functions
@@ -48,8 +51,8 @@ class WeatherViewController: BaseViewController {
     private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         weatherView.listStackView.removeAllArrangedSubviews()
         
-        filter =  HomeWeather.dummyWeather().filter({(location: HomeWeather) -> Bool in
-            return location.position.lowercased().contains(searchText.lowercased())
+        filter =  responseData.filter({(location: WeatherDataModel) -> Bool in
+            return location.name.lowercased().contains(searchText.lowercased())
         })
         
         filter.forEach {
@@ -63,7 +66,7 @@ class WeatherViewController: BaseViewController {
     // 전체 데이터 리스트 불러오기
     private func showTotalList() {
         weatherView.listStackView.removeAllArrangedSubviews()
-        HomeWeather.dummyWeather().forEach {
+        responseData.forEach {
             let list = WeatherBlockView(homeWeahter: $0)
             weatherView.listStackView.addArrangedSubview(list)
             setClosure(list: list)
@@ -72,7 +75,7 @@ class WeatherViewController: BaseViewController {
     
     //초기 리스트 탭 이벤트 설정
     private func setListData() {
-        HomeWeather.dummyWeather().forEach {
+        responseData.forEach {
             let list = WeatherBlockView(homeWeahter: $0)
             weatherView.listStackView.addArrangedSubview(list)
             setClosure(list: list)
@@ -83,13 +86,27 @@ class WeatherViewController: BaseViewController {
     private func setClosure(list: WeatherBlockView) {
         list.handler = {[weak self] in
             guard let self else { return }
-//            let detailViewController = DetailWeatherViewController()
             let detailPageViewController = PageDetailViewController()
-            detailPageViewController.dataBind(id: list.id)
-//            detailViewController.detailDataBind(homeWeather: list.weatherData ?? HomeWeather.dummyWeather()[0],
-//                                                id: list.id)
+            detailPageViewController.dataBind(lat: list.weatherData?.coord.lat ?? Double(),
+                                              lon: list.weatherData?.coord.lon ?? Double(),
+                                              citiesData: responseData,
+                                              cityName: list.weatherData?.name ?? "엥")
             
             navigationController?.pushViewController(detailPageViewController, animated: true)
+        }
+    }
+    
+    private func getCitiesWeather(cities: [String]) {
+        Task {
+            for city in cities {
+                if let result = try await WeatherService.shared.postWeatherData(cityName: city) {
+                    responseData.append(result)
+                } else {
+                    print("또 뭐...")
+                }
+            }
+            setListData()
+            print(responseData)
         }
     }
 }

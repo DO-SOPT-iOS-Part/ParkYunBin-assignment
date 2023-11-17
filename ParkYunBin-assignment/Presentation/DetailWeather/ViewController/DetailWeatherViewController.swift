@@ -61,9 +61,18 @@ class DetailWeatherViewController: BaseViewController {
 
     }
     
-    func detailDataBind(homeWeather: HomeWeather, id: Int) {
-        self.id = id
-        detailWeatherView.detailTopView.dataBind(homeWeather: homeWeather)
+//    func detailDataBind(homeWeather: HomeWeather, id: Int) {
+//        self.id = id
+//        detailWeatherView.detailTopView.dataBind(homeWeather: homeWeather)
+//        detailWeatherView.detailTopView.dataBind(position: <#T##String#>, weather: <#T##String#>, currentTemp: <#T##Int#>, highestTemp: <#T##Int#>, lowestTemp: <#T##Int#>)
+//    }
+    
+    func detailWeatherDataBind(detail: DetailWeatherDataModel) {
+        detailWeatherView.detailTopView.dataBind(position: detail.city.name,
+                                                 weather: detail.list[0].weather[0].description.rawValue,
+                                                 currentTemp: Int(detail.list[0].main.temp),
+                                                 highestTemp: Int(detail.list[0].main.tempMax),
+                                                 lowestTemp: Int(detail.list[0].main.tempMin))
     }
     
     /// 가장 높은 온도와 낮은 온도를 찾아주는 함수
