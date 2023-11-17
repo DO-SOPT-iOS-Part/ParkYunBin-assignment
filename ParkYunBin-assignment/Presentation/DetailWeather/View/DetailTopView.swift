@@ -66,10 +66,17 @@ final class DetailTopView: BaseView {
         }
     }
     
-    func dataBind(homeWeather: HomeWeather) {
-        myPositionLabel.text = homeWeather.position
-        currentWeather.text = homeWeather.weather
-        currentTemp.text = "\(homeWeather.currentTemp)°"
-        highLowTempLabel.text = "최고:\(homeWeather.highestTemp)° 최저:\(homeWeather.lowestTemp)°"
+//    func dataBind(homeWeather: HomeWeather) {
+//        myPositionLabel.text = homeWeather.position
+//        currentWeather.text = homeWeather.weather
+//        currentTemp.text = "\(homeWeather.currentTemp)°"
+//        highLowTempLabel.text = "최고:\(homeWeather.highestTemp)° 최저:\(homeWeather.lowestTemp)°"
+//    }
+    
+    func dataBind(position: String, weather: String, currentTemp: Int, highestTemp: Int, lowestTemp: Int) {
+        myPositionLabel.text = position
+        currentWeather.text = weather
+        self.currentTemp.text = "\(currentTemp)°"
+        highLowTempLabel.text = "최고:\(highestTemp)° 최저:\(lowestTemp)°"
     }
 }

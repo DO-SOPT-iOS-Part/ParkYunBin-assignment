@@ -16,19 +16,26 @@ class PageDetailViewController: BaseViewController {
                                                                options: nil)
     private lazy var dataViewControllers: [DetailWeatherViewController] = []
     private var id = 0
+    private var lat: Double = Double()
+    private var lon: Double = Double()
+    private var citiesData: [WeatherDataModel] = []
+    private var detailWeatherData: [DetailWeatherDataModel] = []
+    private var cityName: String = ""
     
     // MARK: - Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setViewControllerList()
+        getDetailWeather(cities: citiesData)
+        
+//        setViewControllerList()
         setupDelegate()
     
-        pageViewController.setViewControllers([dataViewControllers[id]],
-                                              direction: .forward,
-                                              animated: true,
-                                              completion: nil)
+//        pageViewController.setViewControllers([dataViewControllers[id]],
+//                                              direction: .forward,
+//                                              animated: true,
+//                                              completion: nil)
     }
     
     // MARK: - Override Functions
@@ -55,16 +62,48 @@ class PageDetailViewController: BaseViewController {
             pageViewController.delegate = self
         }
     
-    private func setViewControllerList() {
-        HomeWeather.dummyWeather().forEach {
-            let vc = DetailWeatherViewController()
-            vc.detailDataBind(homeWeather: $0, id: $0.id)
-            dataViewControllers.append(vc)
-        }
+//    private func setViewControllerList() {
+//        HomeWeather.dummyWeather().forEach {
+//            let vc = DetailWeatherViewController()
+//            vc.detailDataBind(homeWeather: $0, id: $0.id)
+//            dataViewControllers.append(vc)
+//        }
+//
+//        citiesData.forEach {
+//            let vc = DetailWeatherViewController()
+////            vc.detailDataBind(homeWeather: <#T##HomeWeather#>, id: <#T##Int#>)
+//            vc.detailWeatherDataBind(detail: $0)
+//        }
+//    }
+    
+    func dataBind(lat: Double, lon: Double, citiesData: [WeatherDataModel], cityName: String) {
+        self.lat = lat
+        self.lon = lon
+        self.citiesData = citiesData
+        self.cityName = cityName
+        self.id = citiesData.firstIndex(where: {$0.name == self.cityName}) ?? 0
     }
     
-    func dataBind(id: Int) {
-        self.id = id
+    
+    
+    private func getDetailWeather(cities: [WeatherDataModel]) {
+        Task {
+            for city in cities {
+                if let result = try await DetailWeatherService.shared.postWeatherData(lat: city.coord.lat, lon: city.coord.lon) {
+                    let vc = DetailWeatherViewController()
+                    detailWeatherData.append(result)
+                    vc.detailWeatherDataBind(detail: result)
+                    dataViewControllers.append(vc)
+                } else {
+                    print("엥")
+                }
+            }
+            print(detailWeatherData)
+            pageViewController.setViewControllers([dataViewControllers[id]],
+                                                  direction: .forward,
+                                                  animated: true,
+                                                  completion: nil)
+        }
     }
 }
 

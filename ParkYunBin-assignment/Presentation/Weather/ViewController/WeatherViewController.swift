@@ -87,7 +87,10 @@ class WeatherViewController: BaseViewController {
         list.handler = {[weak self] in
             guard let self else { return }
             let detailPageViewController = PageDetailViewController()
-            detailPageViewController.dataBind(id: list.id)
+            detailPageViewController.dataBind(lat: list.weatherData?.coord.lat ?? Double(),
+                                              lon: list.weatherData?.coord.lon ?? Double(),
+                                              citiesData: responseData,
+                                              cityName: list.weatherData?.name ?? "엥")
             
             navigationController?.pushViewController(detailPageViewController, animated: true)
         }
@@ -98,9 +101,12 @@ class WeatherViewController: BaseViewController {
             for city in cities {
                 if let result = try await WeatherService.shared.postWeatherData(cityName: city) {
                     responseData.append(result)
+                } else {
+                    print("또 뭐...")
                 }
             }
             setListData()
+            print(responseData)
         }
     }
 }
